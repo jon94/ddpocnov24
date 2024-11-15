@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    tags.datadoghq.com/env: dev  # Add here for unified service tagging
+    tags.datadoghq.com/service: adservice # Add here for unified service tagging
+    tags.datadoghq.com/version: 1.0.0 # Add here for unified service tagging
+  name: adservice
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: adservice
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        admission.datadoghq.com/js-lib.version: v5.25.0 # Add here for APM lib injection
+      labels:
+        admission.datadoghq.com/enabled: "true" # Add here for APM lib injection
+        app: adservice
+        tags.datadoghq.com/env: dev   # Add here for unified service tagging
+        tags.datadoghq.com/service: adservice    # Add here for unified service tagging
+        tags.datadoghq.com/version: 1.0.0    # Add here for unified service tagging
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: "9555"
+        - name: DD_LOGS_INJECTION
+          value: "true"          
+        image: docker.io/smazzone/adservice:a759553da31c4093c95a54403554188ec2ac229765d6c14405bbc18bce9825ae
+        imagePullPolicy: IfNotPresent
+        name: server
+        ports:
+        - containerPort: 9555
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 300m
+            memory: 300Mi
+          requests:
+            cpu: 200m
+            memory: 180Mi
