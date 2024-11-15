@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <redacted>
+  namespace: <redacted>
+spec:
+  selector:
+    matchLabels:
+      app: <redacted>
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: <redacted>
+    spec:
+      containers:
+      - image: <redacted>
+        name: <redacted>
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "3Gi"
+            cpu: "500m"
+          limits:
+            memory: "3Gi"
+            cpu: "500m"
+        imagePullPolicy: Always
+        name: <redacted>
+        env:
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP                  
+        ports:
+        - containerPort: 80
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/bash", "-c", "sleep 120"]
