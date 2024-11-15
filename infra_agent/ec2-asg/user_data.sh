@@ -38,6 +38,11 @@ logs:
 EOT
 
 sudo chown -R dd-agent /etc/datadog-agent/conf.d
+# Set directory permissions to allow traversal and read access by the owner and group
+sudo chmod 750 /etc/datadog-agent/conf.d/<APP_NAME>.d
+# Set file permissions to allow only the owner to read and write
+sudo chmod 640 /etc/datadog-agent/conf.d/<APP_NAME>.d/conf.yaml
+
 
 # Restart the Datadog Agent
 sudo systemctl restart datadog-agent
