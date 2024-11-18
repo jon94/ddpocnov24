@@ -12,9 +12,6 @@ RUN apt-get update -y && \
     php8.2-soap
 
 COPY default /etc/nginx/sites-available/default
-
-<REDACTED>
-
 RUN date
 RUN apt-get update -y
 

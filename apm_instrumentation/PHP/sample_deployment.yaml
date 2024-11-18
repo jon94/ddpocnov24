@@ -31,7 +31,7 @@ spec:
             memory: "3Gi"
             cpu: "500m"
         imagePullPolicy: Always
-        name: <redacted>
+        name: container
         env:
         - name: DD_AGENT_HOST
           valueFrom:
