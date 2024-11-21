@@ -12,3 +12,6 @@
 kubectl create namespace datadog
 kubectl create secret generic datadog-secret -n datadog --from-literal api-key=<DATADOG_API_KEY> --from-literal app-key=<DATADOG_APP_KEY>
 ```
+
+### Logging for file based set up
+https://docs.datadoghq.com/containers/kubernetes/log/?tab=datadogoperator#from-a-container-local-log-file 
