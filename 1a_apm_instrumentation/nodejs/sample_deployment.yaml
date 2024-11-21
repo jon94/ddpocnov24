@@ -22,7 +22,7 @@ spec:
   template:
     metadata:
       annotations:
-        admission.datadoghq.com/js-lib.version: v5.25.0 # Add here for APM lib injection
+        admission.datadoghq.com/js-lib.version: v5.26.0 # Add here for APM lib injection
       labels:
         admission.datadoghq.com/enabled: "true" # Add here for APM lib injection
         app: adservice
