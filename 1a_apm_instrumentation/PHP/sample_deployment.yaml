@@ -1,6 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    tags.datadoghq.com/env: dev  # Add here for unified service tagging
+    tags.datadoghq.com/service: phpservice # Add here for unified service tagging
+    tags.datadoghq.com/version: 1.0.0 # Add here for unified service tagging
   name: <redacted>
   namespace: <redacted>
 spec:
@@ -16,7 +20,11 @@ spec:
   template:
     metadata:
       labels:
+        admission.datadoghq.com/enabled: "true" # Add here for APM lib injection
         app: <redacted>
+        tags.datadoghq.com/env: dev   # Add here for unified service tagging
+        tags.datadoghq.com/service: phpservice    # Add here for unified service tagging
+        tags.datadoghq.com/version: 1.0.0    # Add here for unified service tagging
     spec:
       containers:
       - image: <redacted>
