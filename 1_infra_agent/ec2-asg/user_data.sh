@@ -12,6 +12,7 @@ sudo chown $(whoami) /etc/datadog-agent/environment
 cat <<EOT > /etc/datadog-agent/environment
 DD_SERVICE=$DD_SERVICE 
 DD_ENV=$DD_ENV 
+DD_VERSION=1.0.0
 DD_APM_ENABLED=true 
 DD_APM_NON_LOCAL_TRAFFIC=true 
 EOT
