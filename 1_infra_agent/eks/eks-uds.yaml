@@ -1,0 +1,32 @@
+# Datadog Agent with Logs, APM, Processes, and System Probe enabled
+
+targetSystem: "linux"
+datadog:
+  # apiKey: <DATADOG_API_KEY>
+  # appKey: <DATADOG_APP_KEY>
+  # If not using secrets, then use apiKey and appKey instead, refer to README.md
+  apiKeyExistingSecret: datadog-secret
+  appKeyExistingSecret: datadog-secret
+  ## The name must be unique and must be dot-separated tokens with the following restrictions:
+  ## * Lowercase letters, numbers, and hyphens only.
+  ## * Must start with a letter.
+  ## * Must end with a number or a letter.
+  ## * Overall length should not be higher than 80 characters.
+  ## Compared to the rules of GKE, dots are allowed whereas they are not allowed on GKE:
+  ## https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters#Cluster.FIELDS.name  
+  clusterName: <CLUSTER_NAME>
+  site: <place the site accordingly> https://docs.datadoghq.com/getting_started/site/
+  logs:
+    enabled: true
+    containerCollectAll: true
+    containerCollectUsingFiles: true
+  apm:
+    portEnabled: false    
+    socketEnabled: true
+  dogstatsd:
+    port: 8125	
+    useHostPort: true
+    nonLocalTraffic: true    
+  processAgent:
+    enabled: true
+    processCollection: true
