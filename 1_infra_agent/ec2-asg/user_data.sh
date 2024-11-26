@@ -24,6 +24,9 @@ api_key: $DATADOG_API_KEY
 env: <ENV>
 tags:
   - "service_name:asg-test"
+apm_config:
+  compute_stats_by_span_kind: true
+  peer_tags_aggregation: true  
 logs_enabled: true  
 process_config:
   process_collection:
