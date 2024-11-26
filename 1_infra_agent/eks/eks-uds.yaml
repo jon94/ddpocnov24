@@ -16,6 +16,11 @@ datadog:
   ## https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters#Cluster.FIELDS.name  
   clusterName: <CLUSTER_NAME>
   site: <place the site accordingly> https://docs.datadoghq.com/getting_started/site/
+  env:
+    - name: DD_APM_COMPUTE_STATS_BY_SPAN_KIND
+      value: true 
+    - name: DD_APM_PEER_TAGS_AGGREGATION
+      value: true
   logs:
     enabled: true
     containerCollectAll: true
