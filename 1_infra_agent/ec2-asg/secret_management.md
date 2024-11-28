@@ -52,3 +52,23 @@ Update Datadog Agent configuration to link the apikey secret file in /etc/datado
 # api_key
 api_key: ENC[apikey]
 ```
+Restart the Datadog agent to see the changes effectively
+```
+sudo systemctl restart datadog-agent
+```
+Check the configuration is properly picked up
+```
+sudo datadog-agent secret
+=== Checking executable permissions ===
+Executable path: /etc/datadog-agent/secrets/secrets.py
+Executable permissions: OK, the executable has the correct permissions
+Permissions Detail:
+File mode: 100700
+Owner: dd-agent
+Group: dd-agent
+=== Secrets stats ===
+Number of secrets decrypted: 1
+Secrets handle decrypted:
+- 'apikey':
+	used in 'datadog.yaml' configuration in entry 'api_key
+```
