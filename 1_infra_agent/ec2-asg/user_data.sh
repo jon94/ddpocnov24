@@ -23,7 +23,7 @@ sudo cat <<EOT > /etc/datadog-agent/datadog.yaml
 api_key: $DATADOG_API_KEY
 env: <ENV>
 tags:
-  - "service_name:asg-test"
+  - service:<DD_SERVICE>
 apm_config:
   compute_stats_by_span_kind: true
   peer_tags_aggregation: true  
